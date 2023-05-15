@@ -54,7 +54,6 @@ app.post("/api/upload", upload.single("file"), async (req, res) => {
     const collection = db.collection(collectionName);
     const document = { fileName: file.originalname, url: s3Response.Location };
     await collection.insertOne(document);
-
     res.json({ publicURL: s3Response.Location });
   } catch (err) {
     console.error("Error:", err);
